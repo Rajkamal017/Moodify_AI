@@ -1,11 +1,13 @@
-
 import './App.css'
+import { ThemeContext } from './assets/theme'
 import FaceExpression from './features/Expression/components/FaceExpression'
 
 function App() {
 
   return (
-    <FaceExpression />
+    <ThemeContext.Provider value={"dark"}> 
+      <FaceExpression />
+    </ThemeContext.Provider>
   )
 }
 

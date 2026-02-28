@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import {  init, detect } from "../utils/utils";
+import { useContext } from "react";
+import { ThemeContext } from "../../../assets/theme";
 
-import {
-    FaceLandmarker,
-    FilesetResolver
-} from "@mediapipe/tasks-vision";
 
 export default function FaceExpression() {
     const videoRef = useRef(null);
     const landmarkerRef = useRef(null);
-    const animationRef = useRef(null);
     let streamRef = useRef(null)
+
+    const value = useContext(ThemeContext)
 
     const [ expression, setExpression ] = useState("Detecting...");
 
@@ -32,6 +31,7 @@ export default function FaceExpression() {
 
     return (
         <div style={{ textAlign: "center" }}>
+            <h1>Theme is {value} </h1>
             <video
                 ref={videoRef}
                 style={{ width: "400px", borderRadius: "12px" }}
