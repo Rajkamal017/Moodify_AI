@@ -1,13 +1,14 @@
-import './App.css'
-import { ThemeContext } from './assets/theme'
-import FaceExpression from './features/Expression/components/FaceExpression'
+import { RouterProvider } from "react-router"
+import { router } from "./app.routes"
+import "./features/shared/styles/global.scss"
+import { AuthProvider } from "./features/auth/auth.context"
 
 function App() {
 
   return (
-    <ThemeContext.Provider value={"dark"}> 
-      <FaceExpression />
-    </ThemeContext.Provider>
+    <AuthProvider>
+      <RouterProvider router={router}/>
+    </AuthProvider>
   )
 }
 
