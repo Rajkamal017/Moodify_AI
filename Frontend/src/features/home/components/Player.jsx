@@ -26,12 +26,27 @@ const Player = () => {
     const [showSpeed, setShowSpeed] = useState(false)
     const [isMuted, setIsMuted] = useState(false)
 
-    // Reset player when song changes
+    const isFirstRender = useRef(true)
+
+    // Reset player when song changes and play automatically on subsequent changes
     useEffect(() => {
         if (audioRef.current) {
             audioRef.current.load()
-            setIsPlaying(false)
-            setCurrentTime(0)
+            if (isFirstRender.current) {
+                isFirstRender.current = false
+                setIsPlaying(false)
+                setCurrentTime(0)
+            } else {
+                audioRef.current.play()
+                    .then(() => {
+                        setIsPlaying(true)
+                    })
+                    .catch((err) => {
+                        console.error("Playback failed or blocked by autoplay policy:", err)
+                        setIsPlaying(false)
+                    })
+                setCurrentTime(0)
+            }
         }
     }, [song?.url])
 

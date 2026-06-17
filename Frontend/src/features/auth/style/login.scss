@@ -11,7 +11,18 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         width: 100%;
         max-width: 400px;
-        color: rgb(28, 28, 28);
+                color: rgb(28, 28, 28);
+
+        .error-message {
+            background-color: #fde8e8;
+            color: #e53e3e;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid #fbd5d5;
+            font-size: 0.875rem;
+            text-align: center;
+        }
 
         h2{
             text-align: center;

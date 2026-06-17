@@ -13,17 +13,24 @@ const Login = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState(null)
 
   async function handleSubmit(e){
     e.preventDefault()
-    await handleLogin({ email, password})
-    navigate("/")
+    setError(null)
+    try {
+      await handleLogin({ email, password})
+      navigate("/")
+    } catch (err) {
+      setError(err.response?.data?.message || err.message || "An error occurred during login")
+    }
   }
 
   return (
     <main className='login-page'>
       <div className="form-container">
         <h1>Login</h1>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <FormGroup 
             value={email}

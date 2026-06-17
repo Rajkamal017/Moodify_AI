@@ -10,6 +10,7 @@ const Register = () => {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState(null)
 
   const navigate = useNavigate()
 
@@ -17,14 +18,20 @@ const Register = () => {
 
   async function handleSubmit(e){
     e.preventDefault()
-    await handleRegistered({username, email, password})
-    navigate("/")
+    setError(null)
+    try {
+      await handleRegistered({username, email, password})
+      navigate("/")
+    } catch (err) {
+      setError(err.response?.data?.message || err.message || "An error occurred during registration")
+    }
   }
 
   return (
     <main className='register-page'>
       <div className="form-container">
         <h1>Register</h1>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <FormGroup 
             value={username} 
