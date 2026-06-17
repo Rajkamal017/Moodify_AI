@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "https://moodify-ai-backend-mal5.onrender.com",
+    baseURL: "https://moodify-ai-backendv3.onrender.com",
     withCredentials: true
 })
 
