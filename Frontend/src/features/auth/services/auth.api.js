@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "https://moodify-ai-backendv4.onrender.com",
+    baseURL: "http://localhost:3000",
     withCredentials: true
 })
 
@@ -29,6 +29,12 @@ export async function getMe(){
 
 export async function logout(){
     const response = await api.get("/api/auth/logout")
+    
+    return response.data
+}
+
+export async function googleLogin({ idToken }){
+    const response = await api.post("/api/auth/google", { idToken })
     
     return response.data
 }

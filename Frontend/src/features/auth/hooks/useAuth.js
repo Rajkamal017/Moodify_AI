@@ -1,6 +1,8 @@
-import { login, register, logout } from "../services/auth.api";
+import { login, register, logout, googleLogin } from "../services/auth.api";
 import { useContext } from "react";
 import { AuthContext } from "../auth.context";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../../config/firebase";
 
 export const useAuth = () =>{
     const context = useContext(AuthContext)
@@ -44,7 +46,22 @@ export const useAuth = () =>{
         }
     }
 
+    async function handleGoogleSignIn() {
+        try {
+            setLoading(true)
+            const result = await signInWithPopup(auth, googleProvider)
+            const idToken = await result.user.getIdToken()
+            const data = await googleLogin({ idToken })
+            setUser(data.user)
+        } catch (error) {
+            setUser(null)
+            throw error
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return({
-        user, loading, handleRegistered, handleLogin, handleLogOut
+        user, loading, handleRegistered, handleLogin, handleLogOut, handleGoogleSignIn
     })
 }

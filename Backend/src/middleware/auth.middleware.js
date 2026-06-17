@@ -21,6 +21,14 @@ async function authUser(req, res, next) {
         })
     }
 
+    const isDbBlacklisted = await blacklistModel.findOne({ token })
+    if(isDbBlacklisted){
+        await redis.set(token, "blacklisted", "EX", 60*60)
+        return res.status(401).json({
+            message: "Invalid Token"
+        })
+    }
+
     try {
         const decoded = jwt.verify(
             token,

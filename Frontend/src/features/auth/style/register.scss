@@ -66,5 +66,63 @@
                 background-color: #0056b3;
             }
         }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1rem 0;
+            color: #555;
+            font-size: 0.85rem;
+
+            &::before,
+            &::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #ccc;
+            }
+
+            &:not(:empty)::before {
+                margin-right: .5em;
+            }
+
+            &:not(:empty)::after {
+                margin-left: .5em;
+            }
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background-color: #fff;
+            color: #3c4043;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            margin-bottom: 1.5rem;
+
+            svg {
+                width: 18px;
+                height: 18px;
+                display: block;
+            }
+
+            &:hover {
+                background-color: #f8f9fa;
+                box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+        }
     }
 }
