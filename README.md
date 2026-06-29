@@ -1,45 +1,70 @@
-# Moodify_AI
+# Moodify AI
 
-so basically this app looks at your mood and gives you music. that's it. that's the whole thing.
+your face decides the music. that's the whole idea.
 
-i built this because i was tired of scrolling through spotify for 20 minutes and ending up on the same playlist i always use. the AI does the picking now. sometimes it's right. sometimes it's not. we don't talk about those times.
+Moodify AI scans your facial expression through your webcam, figures out what mood you're in, and immediately starts playing a song that matches it. no searching, no scrolling, no "i don't know what to listen to" spiral.
 
----
-
-## what it does
-
-you tell it how you feel (or it figures it out on its own, depends on the version you're running), and it spits out music recommendations that match your vibe. happy, sad, angry, that weird melancholy you get on sunday evenings — it handles all of it.
-
-frontend is in React with SCSS because i like my styles organized even when my life isn't. backend handles all the AI stuff.
+**live demo →** https://moodify-ai-frontendv4.onrender.com
 
 ---
 
-## running it locally
+## screenshots
 
-you'll need node installed. if you don't have node installed i don't know what to tell you.
+![Main App](screenshots/Moodify_Screenshot.png)
+*face scan in action — detected mood shows up and the player kicks in automatically*
+
+![Login Page](screenshots/Login_Screenshot.png)
+*login with email or google*
+
+---
+
+## how it works
+
+1. **grant camera access** — let the browser see you
+2. **strike a pose** — make a clear expression (smile, look sad, look surprised, etc.)
+3. **hit "Scan Face Expression"** — the AI reads your facial lines and maps them to a mood
+4. **music plays** — a matching track starts immediately at the bottom player
+
+moods it can detect: Happy, Sad, Surprised, and more depending on what expression you pull
+
+---
+
+## features
+
+- live webcam-based facial emotion detection
+- auto-plays music based on detected mood
+- built-in music player (no redirects, plays right there)
+- user accounts — email/password or Google sign-in
+- clean dark UI
+
+---
+
+## running locally
+
+you need Node.js installed.
 
 ```bash
 git clone https://github.com/Rajkamal017/Moodify_AI.git
 cd Moodify_AI
 ```
 
-then open two terminals like a normal person:
-
-**terminal 1 (backend):**
+**backend** (open a terminal):
 ```bash
 cd Backend
 npm install
 npm start
 ```
 
-**terminal 2 (frontend):**
+**frontend** (open another terminal):
 ```bash
 cd Frontend
 npm install
 npm start
 ```
 
-should be running on localhost:3000 or whatever port it decides to use that day.
+then go to `http://localhost:3000`
+
+> if you're setting up env variables (API keys, DB config, etc.), create a `.env` file in the Backend folder. check the backend code for what's needed.
 
 ---
 
@@ -47,34 +72,29 @@ should be running on localhost:3000 or whatever port it decides to use that day.
 
 ```
 Moodify_AI/
-├── Backend/    # the AI lives here
-└── Frontend/   # the pretty part
+├── Backend/    # handles auth, mood logic, music data
+└── Frontend/   # React + SCSS, all the UI stuff
 ```
 
-nothing crazy. Backend does the thinking, Frontend shows the results.
+---
+
+## tech used
+
+- React, JavaScript, SCSS
+- Node.js backend
+- face-api.js (or similar) for emotion detection
+- Google OAuth for login
+- deployed on Render
 
 ---
 
-## tech
+## todo
 
-- JavaScript
-- SCSS
-- HTML (a little bit)
-
----
-
-## contributing
-
-fork it, fix something, open a PR. if you find a bug where it gives you death metal when you're happy, that's a known issue and also kind of funny so maybe leave it.
+- [ ] improve detection accuracy for edge cases
+- [ ] expand the music library per mood
+- [ ] mobile support
+- [ ] show mood history over time
 
 ---
 
-## todo (maybe, no promises)
-
-- [ ] make the mood detection more accurate
-- [ ] add more music sources
-- [ ] fix the thing that breaks sometimes (you'll know it when you see it)
-
----
-
-made this as a project, still tweaking things. if something doesn't work just open an issue and i'll get to it eventually
+built this as a personal project. still actively improving it — if something breaks or you have ideas, open an issue.
